@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
+import { WorkoutService } from '../services/workout.service';
 
 @Component({
   selector: 'app-list',
@@ -6,34 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
+  // items = this.expenseService.expenses;
+
+  constructor( private userService: UserService,
+               private workoutService: WorkoutService,
+               private router: Router ) {
   }
 
   ngOnInit() {
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
+  onSelect(workout) {
+    console.log(workout);
+    this.workoutService.selectedWorkout = workout;
+    this.router.navigateByUrl('/workout-detail');
+  }
+
+  newWorkout() {
+    this.router.navigateByUrl('/workout-new');
+  }
+
 }

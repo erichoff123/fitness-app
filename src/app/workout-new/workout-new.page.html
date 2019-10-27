@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>New Workout</ion-title>
+    <ion-buttons >
+      <ion-button routerLink="/" routerDirection="back">
+        Back
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-background" no-bounce>
+  <form (submit)="addWorkout()" class="form-div">
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Activity</ion-label>
+        <ion-select [(ngModel)]="newWorkout.activity" interface="action-sheet" name="activity" >
+          <ion-select-option value="weightlifting">Weightlifting</ion-select-option>
+          <ion-select-option value="Running">Running</ion-select-option>
+          <ion-select-option value="walking">Walking</ion-select-option>
+          <ion-select-option value="hiking">Hiking</ion-select-option>
+          <ion-select-option value="misc">Misc</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Description</ion-label>
+        <ion-input type="text" [(ngModel)]="newWorkout.description" name="description"> </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Time</ion-label>
+        <ion-input type="test" [(ngModel)]="newWorkout.time" name="time"> </ion-input>
+      </ion-item>
+
+      <ion-button expand="full" type="submit" [disabled]="inputCheck()">Submit</ion-button>
+    </ion-list>
+
+  </form>
+
+</ion-content>
